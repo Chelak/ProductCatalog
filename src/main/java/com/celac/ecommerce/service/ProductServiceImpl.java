@@ -29,4 +29,9 @@ public class ProductServiceImpl implements ProductService {
   public List<Product> featuredProducts() {
     return repository.findFeaturedProducts();
   }
+
+  @Override
+  public List<Product> getProductsByCategory(Long categoryId) {
+    return repository.getByCategoryId(categoryId);
+  }
 }
