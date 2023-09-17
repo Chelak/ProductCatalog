@@ -16,12 +16,11 @@ public class HomeController {
   }
 
   @GetMapping({"/", "/home"})
-  public String printWelcome(Model model) {
+  public String getHomePage(Model model) {
     List<Product> featuredProducts = productService.featuredProducts();
-
-    List<Product> products =  productService.getProductsByCategory(2l);
     model.addAttribute("featuredProducts", featuredProducts);
+    model.addAttribute("pageContent", "home-body");
     model.addAttribute("message", "Hello world!");
-    return "home";
+    return "layout";
   }
 }
