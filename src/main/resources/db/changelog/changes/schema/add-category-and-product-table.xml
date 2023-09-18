@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+<changeSet author="scelac" id="8803282161765-1" labels="version-0.0.1">
+    <sql>
+        create table categories (
+        id                   bigint auto_increment primary key,
+        category_description varchar(255) null,
+        category_name        varchar(255) null
+        );
+    </sql>
+</changeSet>
+    <changeSet author="scelac" id="8803282161765-2" labels="version-0.0.1">
+    <sql>
+        create table products (
+                                  id                     bigint auto_increment primary key,
+                                  featured               enum ('F', 'T')  NOT NULL DEFAULT 'F',
+                                  product_price          double          null,
+                                  product_stock_quantity int             null,
+                                  category_id            bigint          null,
+
+                                  caption_image_path     varchar(255)    null,
+                                  product_description    varchar(255)    null,
+                                  product_name           varchar(255)    null,
+                                  constraint FKog2rp4qthbtt2lfyhfo32lsw9
+                                      foreign key (category_id) references categories (id)
+        );
+    </sql>
+</changeSet>
+</databaseChangeLog>
