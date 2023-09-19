@@ -4,28 +4,46 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
 <changeSet author="scelac" id="8803282161765-1" labels="version-0.0.1">
     <sql>
-        create table categories (
-        id                   bigint auto_increment primary key,
-        category_description varchar(255) null,
-        category_name        varchar(255) null
+        create table categories
+        (
+            id                   bigint auto_increment
+                primary key,
+            category_description varchar(255) null,
+            category_name        varchar(255) null,
+            created_date_time    timestamp    null,
+            published_date_time  timestamp    null,
+            updated_date_time    timestamp    null,
+            url_path             varchar(255) null,
+            constraint UK_e4mjfjcmpf8s8wj55xupvq0x4
+                unique (url_path)
         );
     </sql>
 </changeSet>
     <changeSet author="scelac" id="8803282161765-2" labels="version-0.0.1">
     <sql>
-        create table products (
-                                  id                     bigint auto_increment primary key,
-                                  featured               enum ('F', 'T')  NOT NULL DEFAULT 'F',
-                                  product_price          double          null,
-                                  product_stock_quantity int             null,
-                                  category_id            bigint          null,
-
-                                  caption_image_path     varchar(255)    null,
-                                  product_description    varchar(255)    null,
-                                  product_name           varchar(255)    null,
-                                  constraint FKog2rp4qthbtt2lfyhfo32lsw9
-                                      foreign key (category_id) references categories (id)
+        create table products
+        (
+            id                     bigint auto_increment
+                primary key,
+            featured               enum ('F', 'T') default 'F' not null,
+            product_price          double                      null,
+            product_stock_quantity int                         null,
+            category_id            bigint                      null,
+            caption_image_path     varchar(255)                null,
+            product_description    varchar(255)                null,
+            product_name           varchar(255)                null,
+            created_date_time      timestamp                   null,
+            published              tinyint(1)      default 0   null,
+            published_date_time    timestamp                   null,
+            updated_date_time      timestamp                   null,
+            constraint FKog2rp4qthbtt2lfyhfo32lsw9
+                foreign key (category_id) references categories (id)
         );
     </sql>
-</changeSet>
+   </changeSet>
+    <changeSet author="scelac" id="8803282161765-6" labels="version-0.0.1">
+        <sql>
+            alter table categories add featured enum ('F', 'T') null;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
