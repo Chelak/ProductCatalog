@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 /** Created by user on 8/5/2015. */
 @Controller
-public class ProductPage {
+public class ProductPageController {
   private final CategoryService categoryService;
   private final ProductService productService;
 
-  public ProductPage(CategoryService categoryService, ProductService productService) {
+  public ProductPageController(CategoryService categoryService, ProductService productService) {
     this.categoryService = categoryService;
     this.productService = productService;
   }
