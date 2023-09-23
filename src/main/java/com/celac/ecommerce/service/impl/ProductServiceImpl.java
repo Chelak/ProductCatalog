@@ -1,7 +1,8 @@
-package com.celac.ecommerce.service;
+package com.celac.ecommerce.service.impl;
 
 import com.celac.ecommerce.entity.Product;
 import com.celac.ecommerce.repository.ProductRepository;
+import com.celac.ecommerce.service.ProductService;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
