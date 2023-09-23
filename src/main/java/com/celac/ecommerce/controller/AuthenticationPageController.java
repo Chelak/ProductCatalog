@@ -1,14 +1,25 @@
 package com.celac.ecommerce.controller;
 
+import com.celac.ecommerce.dto.LoginRequestDTO;
+import com.celac.ecommerce.service.AuthenticationService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author scelac
  */
 @Controller
 public class AuthenticationPageController {
+
+    private final AuthenticationService authenticationService;
+
+    public AuthenticationPageController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @GetMapping(value = "/login.html")
     public String getLoginPage(Model model) {
@@ -28,5 +39,11 @@ public class AuthenticationPageController {
         model.addAttribute("pageTitle", "Registration Page");
         model.addAttribute("pageContent", "registration");
         return "authentication-layout";
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequestDTO authenticationRequest) {
+        String message = authenticationService.authenticate(authenticationRequest);
+        return ResponseEntity.ok(message);
     }
 }
