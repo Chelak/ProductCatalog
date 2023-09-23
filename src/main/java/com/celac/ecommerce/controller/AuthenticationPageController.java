@@ -1,5 +1,6 @@
 package com.celac.ecommerce.controller;
 
+import com.celac.ecommerce.dto.AddNewUserRequestDTO;
 import com.celac.ecommerce.dto.LoginRequestDTO;
 import com.celac.ecommerce.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +46,10 @@ public class AuthenticationPageController {
     public ResponseEntity<String> login(@RequestBody LoginRequestDTO authenticationRequest) {
         String message = authenticationService.authenticate(authenticationRequest);
         return ResponseEntity.ok(message);
+    }
+    @PostMapping("/add-new-user")
+    public ResponseEntity<String> addNewUser(@RequestBody AddNewUserRequestDTO registryRequest) {
+//        String message = authenticationService.authenticate(authenticationRequest);
+        return ResponseEntity.ok("Success");
     }
 }
