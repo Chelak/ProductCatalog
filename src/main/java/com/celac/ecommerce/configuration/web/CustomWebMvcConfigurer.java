@@ -1,4 +1,4 @@
-package com.celac.ecommerce.configuration;
+package com.celac.ecommerce.configuration.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,7 +14,8 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry
         .addResourceHandler("/js/**", "/css/**", "/images/**")
-        .addResourceLocations("classpath:/static/img/", "classpath:/static/css/","classpath:/static/js/")
+        .addResourceLocations(
+            "classpath:/static/img/", "classpath:/static/css/", "classpath:/static/js/")
         .setCachePeriod(3600)
         .resourceChain(true)
         .addResolver(new PathResourceResolver());
