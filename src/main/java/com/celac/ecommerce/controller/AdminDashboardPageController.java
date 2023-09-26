@@ -15,4 +15,10 @@ public class AdminDashboardPageController {
     model.addAttribute("pageTitle", "Admin Dashboard");
     return "admin-dashboard-layout";
   }
+  @Secured("SALE_MANAGER")
+  @GetMapping("/sale-dashboard")
+  public String getSaleDashboard(ModelMap model){
+    model.addAttribute("pageTitle", "Sale dashboard");
+    return "sale-dashboard-layout";
+  }
 }
