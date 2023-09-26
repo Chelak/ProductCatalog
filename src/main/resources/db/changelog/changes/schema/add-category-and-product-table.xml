@@ -51,4 +51,27 @@
             alter table products  add url_path varchar(255) null;
         </sql>
     </changeSet>
+    <changeSet author="scelac" id="8803282161765-10" labels="version-0.0.1">
+        <sql>
+            create table users (
+                id                 bigint auto_increment  primary key,
+                first_name         varchar(255)         null,
+                last_name          varchar(255)         null,
+                password           varchar(255)         null,
+                user_name          varchar(255)         null,
+                account_non_locked tinyint(1) default 0 null,
+                constraint UK_k8d0f2n7n88w1a16yhua64onx
+                    unique (user_name)
+            );
+
+            create table user_role (
+                id        bigint auto_increment   primary key,
+                role_name enum ('ADMIN', 'CUSTOMER', 'GUEST', 'SALE_MANAGER') null,
+                user_id   bigint                                              null,
+                constraint FKj345gk1bovqvfame88rcx7yyx
+                    foreign key (user_id) references users (id)
+            );
+
+        </sql>
+    </changeSet>
 </databaseChangeLog>

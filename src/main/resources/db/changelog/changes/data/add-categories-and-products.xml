@@ -71,4 +71,18 @@
             UPDATE product_catalog.products p SET p.url_path = '/tv-si-accesorii/suport-tv-gembird-wm-65rt-03-black' WHERE p.id = 13;
         </sql>
     </changeSet>
+    <changeSet  author="scelac" id="8803282161765-11" labels="version-0.0.1">
+        <sql>
+            INSERT INTO product_catalog.users (first_name, last_name, password, user_name, account_non_locked) VALUES ('Jon', 'Davis', '$2a$05$8LsQH2cDqWdw5qVrJQniueaUvtuRRywk58jp3j7h53ioavFPellzi', 'jon.davis@gmail.com', 1);
+            INSERT INTO product_catalog.users (first_name, last_name, password, user_name, account_non_locked) VALUES ('James', 'Flores', '$2a$05$8LsQH2cDqWdw5qVrJQniueaUvtuRRywk58jp3j7h53ioavFPellzi', 'mail1@gmail.com', 1);
+            INSERT INTO product_catalog.users (first_name, last_name, password, user_name, account_non_locked) VALUES ('Robert', 'Green', '$2a$05$8LsQH2cDqWdw5qVrJQniueaUvtuRRywk58jp3j7h53ioavFPellzi', 'mail2@gmail.com', 1);
+            INSERT INTO product_catalog.users (first_name, last_name, password, user_name, account_non_locked) VALUES ('Michael', 'Adams', '$2a$05$8LsQH2cDqWdw5qVrJQniueaUvtuRRywk58jp3j7h53ioavFPellzi', 'mail3@gmail.com', 1);
+
+            INSERT INTO product_catalog.user_role (role_name, user_id) VALUES ('ADMIN', 1);
+            INSERT INTO product_catalog.user_role (role_name, user_id) VALUES ('GUEST', 2);
+            INSERT INTO product_catalog.user_role (role_name, user_id) VALUES ('SALE_MANAGER', 3);
+            INSERT INTO product_catalog.user_role (role_name, user_id) VALUES ('CUSTOMER', 4);
+
+        </sql>
+    </changeSet>
 </databaseChangeLog>
