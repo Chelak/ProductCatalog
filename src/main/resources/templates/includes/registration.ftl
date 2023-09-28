@@ -18,7 +18,7 @@
                         <input name="password" type="password" class="form-control" id="password" placeholder="password">
                     </div>
                     <div class="mb-3">
-                        <input name="passwordCheck" type="password" class="form-control" id="passwordCheck" placeholder="password">
+                        <input name="passwordForCheck" type="password" class="form-control" id="passwordCheck" placeholder="password">
                     </div>
                     <div class="text-center"><button type="submit" class="btn btn-primary px-5 mb-5 w-100">Create Account</button></div>
                     <div id="emailHelp" class="form-text mb-3 text-dark">
