@@ -1,6 +1,9 @@
 package com.celac.ecommerce.controller;
 
 import com.celac.ecommerce.dto.AddNewUserRequestDTO;
+import com.celac.ecommerce.entity.User;
+import com.celac.ecommerce.service.UserService;
+import java.util.Objects;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @Controller
 public class AuthenticationPageController {
+
+    private final UserService userService;
+
+    public AuthenticationPageController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = "/login.html")
     public String getLoginPage(Model model) {
@@ -36,6 +45,16 @@ public class AuthenticationPageController {
 
     @PostMapping("/add-new-user")
     public ResponseEntity<String> addNewUser(@RequestBody AddNewUserRequestDTO registryRequest) {
-        return ResponseEntity.ok("Success");
+        User newUser = null;
+        if (Objects.nonNull(registryRequest) && (registryRequest.getPassword().equals(registryRequest.getPasswordForCheck()))) {
+            newUser  =     userService.saveUser(registryRequest);
+        }
+         if(Objects.isNull(newUser) && Objects.nonNull(newUser.getId())){
+             return ResponseEntity.ok("Success");
+
+         } else {
+             return ResponseEntity.ok("fail");
+         }
+
     }
 }
