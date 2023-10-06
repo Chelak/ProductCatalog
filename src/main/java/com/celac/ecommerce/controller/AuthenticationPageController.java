@@ -49,7 +49,7 @@ public class AuthenticationPageController {
         if (Objects.nonNull(registryRequest) && (registryRequest.getPassword().equals(registryRequest.getPasswordForCheck()))) {
             newUser  =     userService.saveUser(registryRequest);
         }
-         if(Objects.isNull(newUser) && Objects.nonNull(newUser.getId())){
+         if(Objects.nonNull(newUser) && Objects.nonNull(newUser.getId())){
              return ResponseEntity.ok("Success");
 
          } else {
