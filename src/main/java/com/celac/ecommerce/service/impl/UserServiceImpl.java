@@ -2,8 +2,10 @@ package com.celac.ecommerce.service.impl;
 
 import com.celac.ecommerce.dto.AddNewUserRequestDTO;
 import com.celac.ecommerce.entity.User;
+import com.celac.ecommerce.entity.UserProfile;
 import com.celac.ecommerce.entity.UserRole;
 import com.celac.ecommerce.entity.enums.RoleName;
+import com.celac.ecommerce.repository.UserProfileRepository;
 import com.celac.ecommerce.repository.UserRepository;
 import com.celac.ecommerce.repository.UserRoleRepository;
 import com.celac.ecommerce.service.UserService;
@@ -21,11 +23,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserProfileRepository userProfileRepository;
 
-    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder, UserProfileRepository userProfileRepository) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userProfileRepository = userProfileRepository;
     }
 
     @Override
@@ -34,9 +38,12 @@ public class UserServiceImpl implements UserService {
         if (userRepository.exitUserByUsername(dto.getEmail())){
            return null;
         }
+        UserProfile userProfile = new UserProfile();
+        userProfile.setFirstName(dto.getFirstName());
+        userProfile.setLastName(dto.getLastName());
+        userProfile = userProfileRepository.save(userProfile);
         User newUser = new User();
-        newUser.setFirstName(dto.getFirstName());
-        newUser.setLastName(dto.getLastName());
+        newUser.setUserProfile(userProfile);
         newUser.setAccountNonLocked(false);
         newUser.setUserName(dto.getEmail());
         newUser.setCreatedDateTime(LocalDateTime.now());

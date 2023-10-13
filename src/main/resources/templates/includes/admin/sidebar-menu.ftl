@@ -36,13 +36,13 @@
     <div class="dropdown pb-4">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="hugenerd" width="60" height="60"
+            <img src="${userProfile.imgPath}" alt="hugenerd" width="60" height="60"
                  class="rounded-circle">
             <span class="d-none d-sm-inline mx-1">Admin User</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
             <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
             <li>
                 <hr class="dropdown-divider">
             </li>

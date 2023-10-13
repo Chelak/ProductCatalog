@@ -1,13 +1,16 @@
 package com.celac.ecommerce.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,10 +27,6 @@ public class User {
   private Long id;
   @Column(name = "user_name", unique = true)
   private String userName;
-  @Column(name = "first_name")
-  private String firstName;
-  @Column(name = "last_name")
-  private String lastName;
   @Column(name = "password")
   @JsonIgnore
   private String password;
@@ -38,6 +37,9 @@ public class User {
   private List<UserRole> roles = new ArrayList<>();
   @Column(name = "created_date_time", columnDefinition = "TIMESTAMP")
   private LocalDateTime createdDateTime;
+  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+  @JoinColumn(name = "profile_id")
+  private UserProfile userProfile;
 
   public List<UserRole> getRoles() {
     return roles;
@@ -63,22 +65,6 @@ public class User {
     this.userName = userName;
   }
 
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
   public String getPassword() {
     return password;
   }
@@ -101,5 +87,13 @@ public class User {
 
   public void setCreatedDateTime(LocalDateTime createdDateTime) {
     this.createdDateTime = createdDateTime;
+  }
+
+  public UserProfile getUserProfile() {
+    return userProfile;
+  }
+
+  public void setUserProfile(UserProfile userProfile) {
+    this.userProfile = userProfile;
   }
 }
