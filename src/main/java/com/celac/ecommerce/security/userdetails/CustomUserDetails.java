@@ -1,6 +1,7 @@
 package com.celac.ecommerce.security.userdetails;
 
 import com.celac.ecommerce.entity.UserRole;
+import com.celac.ecommerce.entity.enums.RoleName;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +39,20 @@ public class CustomUserDetails implements UserDetails {
     this.enabled = enabled;
     this.firstName = firstName;
     this.lastName = lastName;
+  }
+  public CustomUserDetails(
+          Long id,
+          String username,
+          String password,
+          List<UserRole> roleList,
+          Boolean accountNonLocked,
+          Boolean enabled) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.authorities = mapAuthority(roleList);
+    this.accountNonLocked = accountNonLocked;
+    this.enabled = enabled;
   }
 
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -98,5 +113,14 @@ public class CustomUserDetails implements UserDetails {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+  public boolean hasPrivilege(RoleName roleName) {
+    for (GrantedAuthority grantedAuth : getAuthorities()) {
+      if (grantedAuth.getAuthority().contains(roleName.name())) {
+        return true;
+      }
+    }
+    return false;
   }
 }

@@ -71,12 +71,21 @@
             UPDATE product_catalog.products p SET p.url_path = '/tv-si-accesorii/suport-tv-gembird-wm-65rt-03-black' WHERE p.id = 13;
         </sql>
     </changeSet>
-    <changeSet  author="scelac" id="8803282161765-11" labels="version-0.0.1">
+    <changeSet  author="scelac" id="8803282161765-12" labels="version-0.0.1">
         <sql>
-            INSERT INTO product_catalog.users (first_name, last_name, password, user_name, account_non_locked) VALUES ('Jon', 'Davis', '$2a$05$8LsQH2cDqWdw5qVrJQniueaUvtuRRywk58jp3j7h53ioavFPellzi', 'jon.davis@gmail.com', 1);
-            INSERT INTO product_catalog.users (first_name, last_name, password, user_name, account_non_locked) VALUES ('James', 'Flores', '$2a$05$8LsQH2cDqWdw5qVrJQniueaUvtuRRywk58jp3j7h53ioavFPellzi', 'mail1@gmail.com', 1);
-            INSERT INTO product_catalog.users (first_name, last_name, password, user_name, account_non_locked) VALUES ('Robert', 'Green', '$2a$05$8LsQH2cDqWdw5qVrJQniueaUvtuRRywk58jp3j7h53ioavFPellzi', 'mail2@gmail.com', 1);
-            INSERT INTO product_catalog.users (first_name, last_name, password, user_name, account_non_locked) VALUES ('Michael', 'Adams', '$2a$05$8LsQH2cDqWdw5qVrJQniueaUvtuRRywk58jp3j7h53ioavFPellzi', 'mail3@gmail.com', 1);
+            INSERT INTO product_catalog.user_profiles (id, address, created_date_time, first_name, image_path, last_name, phone_number, updated_date_time) VALUES
+                                                                                                                                                               (1,'Moldova, Chisinau ','2023-10-13 17:31:25','Jon','/img/profile/user-1.jpg','Davis','+37322114477','2023-10-13 17:31:25'),
+                                                                                                                                                               (2,'Moldova, Chisinau ','2023-10-13 17:31:25','James','/img/profile/user-2.jpg','Flores','+37322114477','2023-10-13 17:31:25'),
+                                                                                                                                                               (3,'Moldova, Chisinau ','2023-10-13 17:31:25','Robert','/img/profile/user-3.jpg','Green','+37322114477','2023-10-13 17:31:25'),
+                                                                                                                                                               (4,'Moldova, Chisinau ','2023-10-13 17:31:25','Michael','/img/profile/user-4.jpg','Adams','+37322114477','2023-10-13 17:31:25');
+        </sql>
+    </changeSet>
+    <changeSet  author="scelac" id="8803282161765-13" labels="version-0.0.1">
+        <sql>
+            INSERT INTO product_catalog.users ( password, user_name, account_non_locked, profile_id) VALUES ('$2a$05$I6jC7UJlRPM1tFme4pOsrOP/BT5JTPTRjjFuN2Y4afHOkly0TZ/qe', 'jon.davis@gmail.com', 1,1);
+            INSERT INTO product_catalog.users ( password, user_name, account_non_locked, profile_id) VALUES ('$2a$05$I6jC7UJlRPM1tFme4pOsrOP/BT5JTPTRjjFuN2Y4afHOkly0TZ/qe', 'mail1@gmail.com', 1,2);
+            INSERT INTO product_catalog.users ( password, user_name, account_non_locked, profile_id) VALUES ('$2a$05$I6jC7UJlRPM1tFme4pOsrOP/BT5JTPTRjjFuN2Y4afHOkly0TZ/qe', 'mail2@gmail.com', 1,3);
+            INSERT INTO product_catalog.users ( password, user_name, account_non_locked, profile_id) VALUES ('$2a$05$I6jC7UJlRPM1tFme4pOsrOP/BT5JTPTRjjFuN2Y4afHOkly0TZ/qe', 'mail3@gmail.com', 1,4);
 
             INSERT INTO product_catalog.user_role (role_name, user_id) VALUES ('ADMIN', 1);
             INSERT INTO product_catalog.user_role (role_name, user_id) VALUES ('GUEST', 2);
