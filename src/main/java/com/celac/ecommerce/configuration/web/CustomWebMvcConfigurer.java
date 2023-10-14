@@ -13,9 +13,10 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry
-        .addResourceHandler("/js/**", "/css/**", "/images/**")
+        .addResourceHandler("/js/**", "/css/**", "/images/**","/img/**")
         .addResourceLocations(
-            "classpath:/static/img/", "classpath:/static/css/", "classpath:/static/js/")
+            "classpath:/static/img/", "classpath:/static/css/", "classpath:/static/js/",
+                "file:/home/scelac/UTM/fileStorageFolder/img/")
         .setCachePeriod(3600)
         .resourceChain(true)
         .addResolver(new PathResourceResolver());

@@ -18,7 +18,7 @@ public class UserProfileDTO {
 
     public UserProfileDTO() {
     }
-//u.id, u.userName, up.firstName, up.lastName,up.imgPath, up.address,up.phoneNumber,up.createdDateTime, up.updatedDateTime
+
     public UserProfileDTO(Long userId, String userName, String firstName, String lastName, String imgPath,  String address, String phoneNumber, LocalDateTime createdDateTime, LocalDateTime updatedDateTime) {
         this.userId = userId;
         this.userName = userName;

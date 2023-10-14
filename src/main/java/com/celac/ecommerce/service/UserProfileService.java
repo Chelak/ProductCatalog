@@ -7,4 +7,6 @@ import com.celac.ecommerce.dto.UserProfileDTO;
 */
 public interface UserProfileService {
     UserProfileDTO getUserProfileDTOByUserId(Long userId);
+
+    void updateUserProfile(UserProfileDTO userProfileDTO);
 }

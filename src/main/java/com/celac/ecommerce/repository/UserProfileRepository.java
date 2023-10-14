@@ -11,7 +11,14 @@ import org.springframework.stereotype.Repository;
 */
 @Repository
 public interface UserProfileRepository extends CrudRepository<UserProfile, Long> {
-   @Query ("SELECT new com.celac.ecommerce.dto.UserProfileDTO(u.id, u.userName, up.firstName, up.lastName,up.imgPath, up.address,up.phoneNumber,up.createdDateTime, up.updatedDateTime) FROM User u " +
-           " JOIN u.userProfile up where u.id = :userId")
+   @Query ("SELECT new com.celac.ecommerce.dto.UserProfileDTO(" +
+           " u.id, u.userName, up.firstName, up.lastName,up.imgPath, up.address,up.phoneNumber,up.createdDateTime, up.updatedDateTime) " +
+           " FROM User u " +
+           " JOIN u.userProfile up " +
+           " WHERE u.id = :userId")
    UserProfileDTO UserProfileDTOByUserId(Long userId);
+   @Query("SELECT up FROM User as u " +
+           " JOIN u.userProfile up " +
+           " WHERE u.id = :userId")
+   UserProfile getUserProfileByUserId(Long userId);
 }
